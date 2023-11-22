@@ -6,9 +6,24 @@ Vue.use(VueRouter)
 //إضافة الراوت الخاص بصفحة عرض جدول الموظفين 
 const routes = [
   {
-    path:'/employee-list-page',
-    name:'EmployeeListPage',
-    component:()=> import ('../views/EmployeeListPage')
+    path:'/home',
+    name:'HomePage',
+    component:()=>import('../views/Home/HomePage.vue')
+  },
+  {
+    path:'/employee-page',
+    name:'EmployeePage',
+    component:()=> import ('../views/Employee/EmployeePage.vue')
+  },
+  {
+    path:'/task-page',
+    name:'TaskPage',
+    component:()=> import('../views/Task/TaskPage.vue')
+  },
+  {
+    path:'/assignments-page',
+    name:'EmployeeAssignmentsPage',
+    component:()=> import('../views/Assignments/AssignmentPage.vue')
   }
 ]
 

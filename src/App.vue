@@ -1,13 +1,24 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link id="link1" to="/employee-list-page">Employee List Page</router-link>
-    </nav>
+    <!-- App header Component -->
+    <app-header>
+    </app-header>
+    <br>
     <router-view/>
-    
   </div>
 </template>
+<script>
+import AppHeader from  './components/AppComponents/AppHeader.vue'
+export default {
+  components:{AppHeader},
+  el:'#app',
+  data(){
+    return {}
+  }
 
+}
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -22,13 +33,9 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color:red;
+  color: white;
 }
 
-nav #link1
-{
-   text-decoration:none; 
-   font-size:30px;
-   font-style: italic;
-}
+
+
 </style>
