@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import ListEmployeeTask from '@/views/AssignTask/ListEmployeeTask.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -104,8 +104,8 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/AssignTask/AssignTaskemployee.vue'),
   },
   {
-    path: '/employee',
-    name: 'employee',
+    path: '/employeetasklist',
+    name: 'employeetasklist',
 
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
