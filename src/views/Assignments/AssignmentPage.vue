@@ -8,8 +8,8 @@
         @addingAssignment="
          {assignmentItems.push({ id: assignmentItems.length + 1, ...$event }),reloadPage()}">
       </assignment-adding-feature>
-      <assignment-list :itemsList="assignmentItemsRetrieval"> </assignment-list>
-     <h1>{{taskItems}}</h1>
+      <assignment-list :itemsList="assignmentItemsRetrieval" > </assignment-list>
+     
     </div>
   </template>
   <script lang="js">
@@ -23,9 +23,9 @@
           /*
           Data we are using
           */
-         assignmentItems:JSON.parse(localStorage.getItem('assignmentItems')||[]),
-         taskItems:JSON.parse(localStorage.getItem('taskItems')||[]),
-         employeeItems:JSON.parse(localStorage.getItem('employeeItems')||[])
+         assignmentItems:JSON.parse(localStorage.getItem('assignmentItems'))||[],
+         taskItems:JSON.parse(localStorage.getItem('taskItems'))||[],
+         employeeItems:JSON.parse(localStorage.getItem('employeeItems'))||[]
       }},
       computed:{
           taskItemsRetrieval(){return JSON.parse(localStorage.getItem('taskItems'))||[]},
