@@ -3,12 +3,13 @@
       <!-- Adding the assignments list component to the page  -->
       <!-- إضافة المكون * جدول التكليفات * إلى الصفحة  -->
       <assignment-adding-feature
-         :taskItems="((taskItems.map(el=>{return el.name || [] })))"
-         :employeeItems="(employeeItems.map(el=>{return el.fname||[]}))"
+         :taskItems="taskItemsRetrieval"
+         :employeeItems="employeeItemsRetrieval"
         @addingAssignment="
          {assignmentItems.push({ id: assignmentItems.length + 1, ...$event }),reloadPage()}">
       </assignment-adding-feature>
-      <assignment-list :itemsList="assignmentItemsRetreival"> </assignment-list>
+      <assignment-list :itemsList="assignmentItemsRetrieval"> </assignment-list>
+     <h1>{{taskItems}}</h1>
     </div>
   </template>
   <script lang="js">
@@ -27,7 +28,9 @@
          employeeItems:JSON.parse(localStorage.getItem('employeeItems')||[])
       }},
       computed:{
-          assignmentItemsRetreival(){ return JSON.parse(localStorage.getItem('assignmentItems'))||[]},},
+          taskItemsRetrieval(){return JSON.parse(localStorage.getItem('taskItems'))||[]},
+          employeeItemsRetrieval(){return JSON.parse(localStorage.getItem('employeeItems'))||[]},  
+          assignmentItemsRetrieval(){ return JSON.parse(localStorage.getItem('assignmentItems'))||[]},},
       watch:{
         assignmentItems(){
               localStorage.setItem('assignmentItems',JSON.stringify(this.assignmentItems))

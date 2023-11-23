@@ -15,7 +15,7 @@
           label-for="responsible-select"
           invalid-feedback="REsponsible is required"
           >
-            <b-form-select id="responsible-select" v-model="form.responsible" :options="employeeItems" required></b-form-select>
+            <b-form-select id="responsible-select" v-model="form.responsible" :options="dropEmployeesRetrieval" required></b-form-select>
           </b-form-group>
 
           <b-form-group
@@ -23,7 +23,7 @@
           label-for="employees-select"
           invalid-feedback="Employees are required"
           >
-            <b-form-select id="employees-select" v-model="form.selectedEmployees" :options="employeeItems" required></b-form-select>
+            <b-form-select id="employees-select" v-model="form.selectedEmployees" :options="dropEmployeesRetrieval" required></b-form-select>
           </b-form-group>
 
            <b-form-group
@@ -31,10 +31,11 @@
           label-for="tasks-select"
           invalid-feedback="Tasks are required"
            >
-            <b-form-select id="tasks-select" v-model="form.selectedTasks" :options="taskItems" required></b-form-select>
+            <b-form-select id="tasks-select" v-model="form.selectedTasks" :options="dropTasksRetrieval" required></b-form-select>
           </b-form-group>
           </form>
 </b-modal>
+ 
     </div>
   </template>
   <script>
@@ -62,13 +63,24 @@
     props:['taskItems','employeeItems'],
     data() {
       return {
-        //single item stored temporiraly in the page till being sent
         form: {
          responsible:"",
          selectedEmployees:"",
          selectedTasks:""
         }
       };
+    },
+    computed:{
+      dropEmployeesRetrieval(){
+         if(this.employeeItems==[])return [""];
+         else 
+        return this.employeeItems.map(el =>el.fname)
+      },
+      dropTasksRetrieval(){
+         if(this.taskItems==[])return [""];
+         else
+         return this.taskItems.map(el =>el.name)
+      }
     },
     methods: {
       // editTask: function (task) {

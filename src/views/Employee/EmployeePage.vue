@@ -26,9 +26,9 @@ export default {
     computed:{
         employeeItemsRetreival(){ return JSON.parse(localStorage.getItem('employeeItems'))||[]},},
     watch:{
-         employeeItems(){
-            localStorage.setItem('employeeItems',JSON.stringify(this.employeeItems))
-         }
+          employeeItems(){
+             localStorage.setItem('employeeItems',JSON.stringify(this.employeeItems))
+          }
     },
     methods:{
         reloadPage()
