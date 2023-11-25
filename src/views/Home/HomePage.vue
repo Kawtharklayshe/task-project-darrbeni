@@ -1,28 +1,45 @@
 <template>
   <div>
-    <h3>Employee Management System</h3>
+    <h3><sapn class="firstChar1">E</sapn>mployee <sapn class="firstChar1">M</sapn>anagement <sapn class="firstChar1">S</sapn>ystem</h3>
+    <br />
+    <b-container class="bv-example-row ">
+      <b-row >
+        <b-col variant="info">Employees Number</b-col>
+        <b-col>Tasks Number</b-col>
+        <b-col>Assignments Number</b-col>
+      </b-row>
+      <b-row>
+        <b-col>{{ employeeNumber }}</b-col>
+        <b-col>{{ taskNumber }}</b-col>
+        <b-col>{{ assignmentNumber }}</b-col>
+      </b-row>
+    </b-container>
     <br>
-  <img id="systemPicture" src="../../assets/HomeAssets/EMS.jpg" alt="">
+    <img id="systemPicture" src="../../assets/HomeAssets/EMS.jpg" alt="" />
   </div>
-  </template>
-  <script>
-  import {BImg }from  'bootstrap-vue'
+</template>
+  <script lang="js">
+  import {BImg,BContainer,BCol,BRow }from  'bootstrap-vue';
+  import {AppList} from '@/components/GeneralComponents/DataTable.vue';
   export default {
-  components:{BImg},
-  
+  components:{AppList,BImg,BContainer,BCol,BRow},
     data(){
       return {
-
-      }
+        employeeNumber:(JSON.parse(localStorage.getItem('employeeItems'))||[]).length,
+        taskNumber:(JSON.parse(localStorage.getItem('taskItems'))||[]).length,
+        assignmentNumber:(JSON.parse(localStorage.getItem('assignmentItems'))||[]).length
+    }
+  }
 }
-} 
-  
 </script>
 <style>
-#systemPicture
+.firstChar1
 {
- width: 400px;
- height: 400px;
+  color:rgba(11, 98, 230, 0.801);
+}
+#systemPicture {
+  width: 350px;
+  height: 350px;
 }
 </style>
   

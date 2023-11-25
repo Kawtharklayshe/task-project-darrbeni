@@ -4,7 +4,6 @@
     </div>
   </template>
   <script lang="js">
-  
   import 
   {
       BTable
@@ -15,8 +14,6 @@
      props:['itemsList'],
      data() {return{
         }
-     },
-     methods:{
-   
      }
-  }</script>
+}
+  </script>

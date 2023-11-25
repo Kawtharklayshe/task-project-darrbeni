@@ -5,8 +5,8 @@ import store from './store'
 import 'bootstrap/dist/css/bootstrap.css' // Import Bootstrap CSS
 import 'bootstrap-vue/dist/bootstrap-vue.css' // Import Bootstrap-Vue CSS
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
-
+import DataTable from '@/components/GeneralComponents/DataTable.vue'
+Vue.component('DataTable', DataTable)
 
 Vue.use(BootstrapVue) // Register BootstrapVue
 Vue.use(IconsPlugin)

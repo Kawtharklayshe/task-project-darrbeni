@@ -2,8 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
-  // creating the route of the EmplyeeListPage
-//إضافة الراوت الخاص بصفحة عرض جدول الموظفين 
+  // creating the routes
 const routes = [
   {
     path:'/home',
@@ -26,10 +25,7 @@ const routes = [
     component:()=> import('../views/Assignments/AssignmentPage.vue')
   }
 ]
-
-
 const router = new VueRouter({
   routes
 })
-
 export default router

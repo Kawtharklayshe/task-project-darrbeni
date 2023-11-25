@@ -1,13 +1,12 @@
 <template>
   <div>
-    <b-button v-b-modal.employee-modal @click="erase">Add Employee</b-button>
+    <b-button variant="info" v-b-modal.employee-modal @click="erase">Add Employee</b-button>
     <b-modal
       id="employee-modal"
       ref="modal"
       title="Adding New Employee"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="saveTask"
+    
+      @ok="saveEmployee"
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group
@@ -28,7 +27,7 @@
         >
         <b-form-input
             id="age-input"
-            v-model="form.age"
+            v-model="form.lname"
             required
           ></b-form-input>
         </b-form-group>
@@ -39,7 +38,7 @@
         >
           <b-form-input
             id="lname-input"
-            v-model="form.lname"
+            v-model="form.age"
             required
           ></b-form-input>
         </b-form-group>
@@ -127,9 +126,14 @@ export default {
         (this.endDate = ""),
         (this.email = "");
     },
-    saveTask: function () {
-      this.$emit("addingEmployee", {fname:this.form.fname,lname:this.form.lname,ex:this.form.ex
-      ,startDate:this.form.startDate,endDate:this.form.endDate,email:this.form.email});
+    saveEmployee: function () {
+      this.$emit("addingEmployee",
+       {fname:this.form.fname,
+        lname:this.form.lname,
+        ex:this.form.ex,
+        startDate:this.form.startDate,
+        endDate:this.form.endDate,
+        email:this.form.email});
     },
     handleOk(bvModalEvent) {
       // Prevent modal from closing

@@ -1,23 +1,23 @@
 <template>
   <div id="app">
     <!-- App header Component -->
-    <app-header>
-    </app-header>
-    <br>
-    <router-view/>
+    <!-- إضافة المكون *هيدر الموقع* للصفحة  -->
+    <app-header></app-header>
+    <br/>
+    <!-- مكان عرض الصفحات الأساسية   -->
+    <router-view />
   </div>
 </template>
 <script>
-import AppHeader from  './components/AppComponents/AppHeader.vue'
+import AppHeader from "./components/AppComponents/AppHeader.vue";
+
 export default {
-  components:{AppHeader},
-  el:'#app',
-  data(){
-    return {}
-  }
-
-}
-
+  components: { AppHeader },
+  el: "#app",
+  data() {
+    return {};
+  },
+};
 </script>
 <style>
 #app {
@@ -27,15 +27,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a.router-link-exact-active {
-  color: white;
-}
-
-
-
 </style>

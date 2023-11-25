@@ -1,13 +1,11 @@
 <template>
   <div>
 
-    <b-button v-b-modal.task-modal @click="erase">Add Task</b-button>
+    <b-button variant="info" v-b-modal.task-modal @click="erase">Add Task</b-button>
     <b-modal
       id="task-modal"
       ref="modal"
       title="Adding New Task"
-      @show="resetModal"
-      @hidden="resetModal"
       @ok="saveTask"
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
