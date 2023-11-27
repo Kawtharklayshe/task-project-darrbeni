@@ -26,7 +26,7 @@
           invalid-feedback="Last name is required"
         >
         <b-form-input
-            id="age-input"
+            id="lname-input"
             v-model="form.lname"
             required
           ></b-form-input>
@@ -37,7 +37,7 @@
           invalid-feedback="Age is required"
         >
           <b-form-input
-            id="lname-input"
+            id="age-input"
             v-model="form.age"
             required
           ></b-form-input>
@@ -109,7 +109,8 @@ export default {
         lname: "",
         startDate: "",
         endDate: "",
-        ex: null
+        ex: "",
+        age:""
       },
     };
   },
@@ -125,11 +126,16 @@ export default {
         (this.startDate = ""),
         (this.endDate = ""),
         (this.email = "");
+        (this.age = "");
+
     },
     saveEmployee: function () {
       this.$emit("addingEmployee",
-       {fname:this.form.fname,
+
+       {
+        fname:this.form.fname,
         lname:this.form.lname,
+        age:this.form.age,
         ex:this.form.ex,
         startDate:this.form.startDate,
         endDate:this.form.endDate,

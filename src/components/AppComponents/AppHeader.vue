@@ -2,10 +2,16 @@
     <div>
       <b-navbar toggleable="lg" type="dark" variant="secondary">
         <router-link to="/home" id="brand" exact>
-        <b-navbar-brand></b-navbar-brand>
-          <b-badge pill variant="danger"><span class="firstChar">E</span>mployee <br> <span class="firstChar">M</span>anagment <br><span class="firstChar">S</span>ystem </b-navbar-brand>
-       
-       </b-badge>   </router-link>
+
+          <b-badge pill variant="danger">
+            <span class="firstChar">E</span>mployee 
+            <br>
+             <span class="firstChar">M</span>anagment 
+            <br>
+            <span class="firstChar">S</span>ystem 
+          </b-badge> 
+     
+        </router-link>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       
         <b-collapse id="nav-collapse" is-nav>

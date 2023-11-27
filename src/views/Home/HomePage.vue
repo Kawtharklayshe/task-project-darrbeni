@@ -2,7 +2,7 @@
   <div>
     <h3><sapn class="firstChar1">E</sapn>mployee <sapn class="firstChar1">M</sapn>anagement <sapn class="firstChar1">S</sapn>ystem</h3>
     <br />
-    <b-container class="bv-example-row ">
+    <b-container >
       <b-row >
         <b-col variant="info">Employees Number</b-col>
         <b-col>Tasks Number</b-col>

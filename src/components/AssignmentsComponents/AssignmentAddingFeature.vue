@@ -22,7 +22,7 @@
           label-for="employees-select"
           invalid-feedback="Employees are required"
           >
-            <b-form-select id="employees-select" v-model="form.selectedEmployees" :options="dropEmployees" required></b-form-select>
+            <b-form-select id="employees-select" v-model="form.employees" :options="dropEmployees" required></b-form-select>
           </b-form-group>
 
            <b-form-group
@@ -30,7 +30,7 @@
           label-for="tasks-select"
           invalid-feedback="Tasks are required"
            >
-            <b-form-select id="tasks-select" v-model="form.selectedTasks" :options="dropTasks" required></b-form-select>
+            <b-form-select id="tasks-select" v-model="form.tasks" :options="dropTasks" required></b-form-select>
           </b-form-group>
           </form>
 </b-modal>
@@ -88,7 +88,9 @@
       },
       saveTask: function () {
         this.$emit("addingAssignment", {
-          responsible:this.form.responsible,employees:this.form.selectedEmployees,tasks:this.form.selectedTasks
+          responsible:this.form.responsible,
+          Employees:this.form.selectedEmployees,
+          Tasks:this.form.selectedTasks
         }
         );
       },

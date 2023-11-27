@@ -58,10 +58,17 @@
             ></b-form-input>
           </b-form-group>
            
-          <b-form-select
-            v-model="form.difficulty"
-            :options="options"
-          ></b-form-select>
+          <b-form-group
+          label="Task Difficulty:"
+          label-for="task-difficulty"
+          invalid-feedback="Task Difficulty is required"
+        >
+        <b-form-select
+        id="task-difficulty"
+        v-model="form.difficulty"
+        :options="options"
+      ></b-form-select>
+        </b-form-group>
           
           <label for="example-datepicker">Start Date :</label>
           <b-form-datepicker
@@ -92,6 +99,7 @@
   } from "bootstrap-vue";
   
   export default {
+    props:['taskItems'],
     components: {
       BButton,
       BModal,
@@ -105,12 +113,13 @@
       return {
         //single item stored temporiraly in the page till being sent
         form: {
+          id:null,
           name: "",
-          description: "",
-          duration: "",
-          startDate: "",
-          endDate: "",
-          difficulty: "",
+          description:"",
+          duration:"",
+          startDate:"",
+          endDate:"",
+          difficulty:""
         },
         options: [
           { value: 1, text: "Very hard" },
@@ -123,11 +132,13 @@
     },
     methods: {
       erase: function () {
-        (this.name = ""),
-          (this.description = ""),
+          (this.form.id=""),
+          (this.form.name =""),
+          (this.form.description = ""),
           (this.form.duration = ""),
           (this.form.startDate = ""),
-          (this.form.endDate = ""),((this.form.difficulty = ""));
+          (this.form.endDate = ""),
+          (this.form.difficulty = "");
       },
       saveTask: function () {
         this.$emit("updatingTask", {
