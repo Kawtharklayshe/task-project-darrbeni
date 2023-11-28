@@ -61,8 +61,8 @@
       return {
         form: {
          responsible:"",
-         selectedEmployees:"",
-         selectedTasks:""
+         employees:"",
+         tasks:""
         }
       };
     },
@@ -79,18 +79,14 @@
       }
     },
     methods: {
-      // editTask: function (task) {
-      //   console.log("afldf");
-      //   this.$router.push({ name: "editTask", params: { id: task.id } });
-      // },
       erase: function () {
         (this.responsible="")
       },
       saveTask: function () {
         this.$emit("addingAssignment", {
           responsible:this.form.responsible,
-          Employees:this.form.selectedEmployees,
-          Tasks:this.form.selectedTasks
+          employees:this.form.employees,
+          tasks:this.form.tasks
         }
         );
       },

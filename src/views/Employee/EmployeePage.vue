@@ -19,13 +19,19 @@
 <script lang="js">
 import EmployeeAddingFeature from '@/components/EmployeeComponents/EmployeeAddingFeature.vue';
 import EmployeeUpdatingFeature from '@/components/EmployeeComponents/EmployeeUpdatingFeature.vue';
+import mixin from '@/mixins/mixin'
 export default {
+    mixins:[mixin],
     components:{
         EmployeeAddingFeature,EmployeeUpdatingFeature
     },
     data(){return {
         employeeItems:JSON.parse(localStorage.getItem('employeeItems'))||[],
     }},
+    created() {
+    // Let's use the function provided by the mixin.
+    console.log(`${this.currentUser.name} has currently logged into the employee page.`);
+   },
     watch:
         {
           employeeItems:function(){

@@ -4,8 +4,7 @@
       <b-modal
         id="assignment-modal-2"
         ref="modal"
-        title="Updating Assignment"
-      
+        title="Updating Assignment" 
         @ok="saveAssignment"
       >
         <form ref="form" @submit.stop.prevent="handleSubmit">
@@ -79,7 +78,6 @@
       };
     },
     computed:{
-
       dropEmployees(){
          if(this.employeeItems==[])return [""];
          else 
@@ -101,12 +99,15 @@
       },
       saveAssignment: function () {
         this.$emit("updatingAssignment", {
+    
           id:this.form.id,
           responsible:this.form.responsible,
-          employees:this.form.selectedEmployees,
-          tasks:this.form.selectedTasks
+          employees:this.form.employees,
+          tasks:this.form.tasks
         }
         );
+        console.log(this.form);
+        console.log("//////");
       },
       handleOk(bvModalEvent) {
         // Prevent modal from closing
