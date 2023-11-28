@@ -52,6 +52,10 @@ export default {
     }
   },
     methods:{
+      reloadPage()
+      {
+        window.location.reload()
+      },
       //Updater
         updateTask($event){
           if((({...$event}.id-1)<this.taskItems.length)&&(({...$event}.id-1)>=0 ))

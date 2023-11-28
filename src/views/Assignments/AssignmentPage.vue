@@ -49,7 +49,10 @@
       else return true;
     },},
       methods:{
-          
+        reloadPage()
+      {
+        window.location.reload()
+      },
           updateAssignment($event){
             if((({...$event}.id-1)<this.assignmentItems.length)&&(({...$event}.id-1)>=0 ))
           {

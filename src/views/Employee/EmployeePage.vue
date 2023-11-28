@@ -45,6 +45,10 @@ export default {
     }
     },
     methods:{
+      reloadPage()
+      {
+        window.location.reload()
+      },
         updateEmployee($event){
             if((({...$event}.id-1)<this.employeeItems.length)&&(({...$event}.id-1)>=0 ))
              {
