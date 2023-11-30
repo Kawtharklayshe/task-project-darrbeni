@@ -5,12 +5,7 @@
     <assignment-adding-feature
       :taskItems="taskItems"
       :employeeItems="employeeItems"
-      @addingAssignment="
-        {
-          assignmentItems.push({ id: assignmentItems.length + 1, ...$event }),
-            reloadPage();
-        }
-      "
+      @addingAssignment="addAssignment"
     >
     </assignment-adding-feature>
     <br />
@@ -24,31 +19,33 @@
       @updatingAssignment="updateAssignment"
     >
     </assignment-updating-feature>
-
+   <br/>
+   <assignment-deleting-feature
+   v-if="assignmentsExisted"
+   @deletingAssignment="deleteAssignment">
+   </assignment-deleting-feature>
     <!-- Adding the items list component to the page  -->
     <!-- إضافة المكون * جدول العناصر * إلى الصفحة  -->
     <data-table :itemsList="assignmentItems"> </data-table>
   </div>
 </template>
 <script lang="js">
+//Components
 import AssignmentAddingFeature from '@/components/AssignmentsComponents/AssignmentAddingFeature.vue';
 import AssignmentUpdatingFeature from '@/components/AssignmentsComponents/AssignmentUpdatingFeature.vue';
-import mixin from '@/mixins/mixin'
-
+import AssignmentDeletingFeature from '@/components/AssignmentsComponents/AssignmentDeletingFeature.vue';
+//Mixins
+import Mixin from '@/mixins/mixin'
 export default {
+  mixins:[Mixin],
     components:{
-        AssignmentAddingFeature,AssignmentUpdatingFeature,
+        AssignmentAddingFeature,AssignmentUpdatingFeature,AssignmentDeletingFeature
     },
-    mixins: [ mixin ],
     data(){return {
        assignmentItems:JSON.parse(localStorage.getItem('assignmentItems'))||[],
        taskItems:JSON.parse(localStorage.getItem('taskItems'))||[],
        employeeItems:JSON.parse(localStorage.getItem('employeeItems'))||[]
     }},
-    created() {
-    // Let's use the function provided by the mixin.
-    console.log(`${this.currentUser.name} has currently logged into the assignment page.`);
-   },
     watch:{
       assignmentItems(){
             localStorage.setItem('assignmentItems',JSON.stringify(this.assignmentItems))
@@ -66,8 +63,20 @@ export default {
     {
       window.location.reload()
     },
-        updateAssignment($event){
-          console.log({...$event})
+    addAssignment($event)
+      {
+        this.assignmentItems.push({ id: this.assignmentItems.length + 1, ...$event });
+        if(this.assignmentItems.length==1)
+            this.reloadPage();
+          //updating history
+        this.historyItems.push({id:this.historyItems.length+1,
+          details:`You added a new Assignment with  ${{...$event}.responsible} as a resposible`})
+      },
+      updateAssignment($event){
+           //updating history
+           this.historyItems.push
+           ( {id:this.historyItems.length+1,
+            details:`You have updated an Assignment whose responsible was ${{...$event}.responsible}`}) ;
           if((({...$event}.id-1)<this.assignmentItems.length)&&(({...$event}.id-1)>=0 ))
         {
           if ({...$event}.responsible!="")
@@ -82,7 +91,26 @@ export default {
         {
           alert("you entered a bad id")
         }
-    }
+    },
+    deleteAssignment($event)
+    {
+        if((({...$event}.id)<this.assignmentItems.length)&&(({...$event}.id)>=0 ))
+          {
+            //updating history
+            this.historyItems.push({id:this.historyItems.length+1,
+            details:`You have deleted an Assignment whose responsible is ${this.assignmentItems[{...$event}.id].responsible}`}) 
+            this.assignmentItems=this.assignmentItems.slice(0,{...$event}.id).
+            concat(this.assignmentItems.slice({...$event}.id+1,this.assignmentItems.length));
+            this.assignmentItems.filter((el) => el.id>{...$event}.id).map((el) => el.id--);
+            localStorage.setItem('assignmentItems',JSON.stringify(this.assignmentItems));
+            if({...$event}.id==0)
+            this.reloadPage();
+          }
+        else
+          {
+            alert("you entered a bad id")
+          }
+        }
     }
 }
 </script>

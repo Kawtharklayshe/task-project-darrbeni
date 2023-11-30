@@ -2,62 +2,69 @@
   <div>
       <!-- Adding the adding items component to the page  -->
       <!-- إضافة المكون * إضافة العناصر * إلى الصفحة  -->
-      <task-adding-feature
-      @addingTask="
-        {
-          taskItems.push({ id: taskItems.length + 1, ...$event }), reloadPage();
-        }
-      "
-    >
+      <task-adding-feature @addingTask="addTask">
     </task-adding-feature>
     <br />
       <!-- Adding the updating items component to the page  -->
       <!-- إضافة المكون * تعديل العناصر * إلى الصفحة  -->
       <task-updating-feature v-if="tasksExisted" @updatingTask="updateTask"> </task-updating-feature>
-
+     <br/>
+      <!-- Adding the deleting items component to the page  -->
+      <!-- إضافة المكون * حذف العناصر * إلى الصفحة  -->
+      <task-deleting-feature v-if="tasksExisted" @deletingTask="deleteTask"> </task-deleting-feature>
+     
       <!-- Adding the items list component to the page  -->
       <!-- إضافة المكون * جدول العناصر * إلى الصفحة  -->
     <data-table :itemsList="taskItems"></data-table>
   </div>
 </template>
 <script lang="js">
+//Components
 import TaskAddingFeature from '@/components/TaskComponents/TaskAddingFeature.vue';
 import TaskUpdatingFeature from '@/components/TaskComponents/TaskUpdatingFeature.vue';
-
+import TaskDeletingFeature from '@/components/TaskComponents/TaskDeletingFeature.vue';
+//Mixins
+import Mixin from '@/mixins/mixin'
 export default {
+  mixins:[Mixin],
     components:{
       TaskAddingFeature,
-      TaskUpdatingFeature
+      TaskUpdatingFeature,
+      TaskDeletingFeature
     },
-    data(){
-      return {
-        taskItems:JSON.parse(localStorage.getItem('taskItems'))||[]
-    }},
-        watch:{
-         taskItems(){
-            localStorage.setItem('taskItems',JSON.stringify(this.taskItems))
-         }
-    }
-    ,
+    data(){return { 
+      taskItems:JSON.parse(localStorage.getItem('taskItems'))||[]
+     }},
+    watch:{
+       taskItems(){
+         localStorage.setItem('taskItems',JSON.stringify(this.taskItems))
+     }
+    },
     computed:{
       tasksExisted()
       {
         if((JSON.parse(localStorage.getItem('taskItems'))||[]).length==0) return false;
       else return true;
-    },
-    computed:{
+      },
       taskItems(){
         return JSON.parse(localStorage.getItem('taskItems'))||[]
       }
-    }
-  },
+    },
     methods:{
       reloadPage()
       {
         window.location.reload()
       },
-      //Updater
-        updateTask($event){
+      addTask($event)
+      {
+        this.taskItems.push({ id: this.taskItems.length + 1, ...$event });
+        if(this.taskItems.length==1)
+            this.reloadPage();
+          //updating history
+        this.historyItems.push({id:this.historyItems.length+1,
+          details:`You added the Task :${{...$event}.name}`})
+      },
+       updateTask($event){
           if((({...$event}.id-1)<this.taskItems.length)&&(({...$event}.id-1)>=0 ))
           {
             if ({...$event}.name!="")
@@ -72,9 +79,32 @@ export default {
              this.taskItems[{...$event}.id-1].startDate={...$event}.startDate;
             if ({...$event}.endDate!="")
              this.taskItems[{...$event}.id-1].endDate={ ...$event }.endDate;
+             //updating history 
+             this.historyItems.push({id:this.historyItems.length+1,
+            details:`You have updated the Task :${{...$event}.name}`}) 
             localStorage.setItem('taskItems',JSON.stringify(this.taskItems));
+          
           }
           else
+          {
+            alert("you entered a bad id")
+          }
+      },
+      deleteTask($event)
+      {
+        console.log({...$event}.id);
+        if((({...$event}.id)<this.taskItems.length)&&(({...$event}.id)>=0 ))
+          {
+              //updating history
+          this.historyItems.push({id:this.historyItems.length+1,
+          details:`You have deleted the Task :${this.taskItems[{...$event}.id].name} `}) 
+            this.taskItems=this.taskItems.slice(0,{...$event}.id).concat(this.taskItems.slice({...$event}.id+1,this.taskItems.length));
+            this.taskItems.filter((el) => el.id>{...$event}.id).map((el) => el.id--);
+            localStorage.setItem('taskItems',JSON.stringify(this.taskItems));
+            if({...$event}.id==0)
+            this.reloadPage();
+          }
+        else
           {
             alert("you entered a bad id")
           }

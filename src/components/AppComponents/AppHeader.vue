@@ -21,13 +21,16 @@
                     <router-link class="router" to="/home" tag="li" > Home</router-link>
                   </b-nav-item>
                   <b-nav-item>
-                    <router-link class="router" to="/employee-page" tag="li">Employees</router-link>
+                    <router-link class="router" to="/employees" tag="li">Employees</router-link>
                   </b-nav-item>
                   <b-nav-item>
-                    <router-link class="router" to="/task-page" tag="li">Tasks </router-link>
+                    <router-link class="router" to="/tasks" tag="li">Tasks </router-link>
                   </b-nav-item>
                   <b-nav-item>
-                    <router-link class="router" to="/assignments-page" tag="li">Assignments</router-link>
+                    <router-link class="router" to="/assignments" tag="li">Assignments</router-link>
+                  </b-nav-item>
+                  <b-nav-item >
+                    <router-link class="router" to="/history" tag="li" > History</router-link>
                   </b-nav-item>
                   </b-nav> 
           </b-navbar-nav> 

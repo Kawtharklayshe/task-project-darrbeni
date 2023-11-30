@@ -10,19 +10,24 @@ const routes = [
     component:()=>import('../views/Home/HomePage.vue')
   },
   {
-    path:'/employee-page',
+    path:'/employees',
     name:'EmployeePage',
     component:()=> import ('../views/Employee/EmployeePage.vue')
   },
   {
-    path:'/task-page',
+    path:'/tasks',
     name:'TaskPage',
     component:()=> import('../views/Task/TaskPage.vue')
   },
   {
-    path:'/assignments-page',
-    name:'EmployeeAssignmentsPage',
+    path:'/assignments',
+    name:'AssignmentsPage',
     component:()=> import('../views/Assignments/AssignmentPage.vue')
+  },
+  {
+    path:'/history',
+    name:'HistoryPage',
+    component:()=> import('../views/History/HistoryPage.vue')
   }
 ]
 const router = new VueRouter({
