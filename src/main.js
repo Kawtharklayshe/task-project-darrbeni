@@ -6,8 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css' // Import Bootstrap CSS
 import 'bootstrap-vue/dist/bootstrap-vue.css' // Import Bootstrap-Vue CSS
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import DataTable from '@/components/GeneralComponents/DataTable.vue'
-
 Vue.component('DataTable', DataTable)
+
+
+//Design 
+import { BContainer,BRow,BCol } from 'bootstrap-vue'
+Vue.component('b-container', BContainer)
+Vue.component('b-row', BRow)
+Vue.component('b-col', BCol)
 
 Vue.use(BootstrapVue) // Register BootstrapVue
 Vue.use(IconsPlugin)

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <b-button variant="info" v-b-modal.employee-modal-2 @click="erase">Update Employee</b-button>
+      <b-button variant="info" v-b-modal.employee-modal-2 @click="erase"><pre>Update      <br>   Employee</pre> </b-button>
       <b-modal
         id="employee-modal-2"
         ref="modal"

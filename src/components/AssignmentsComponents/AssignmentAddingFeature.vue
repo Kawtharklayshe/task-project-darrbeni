@@ -1,6 +1,6 @@
 <template>
     <div>
-      <b-button variant="info" v-b-modal.assignment-modal @click="erase">Add Assignment</b-button>
+      <b-button variant="secondary" v-b-modal.assignment-modal @click="erase"><pre>Add        <br />   Assignment</pre> </b-button>
       <b-modal
         id="assignment-modal"
         ref="modal"

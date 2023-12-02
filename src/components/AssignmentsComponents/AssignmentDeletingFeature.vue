@@ -1,6 +1,6 @@
 <template>
     <div>
-      <b-button variant="info" v-b-modal.task-modal-3 @click="erase">Delete Assignment</b-button>
+      <b-button variant="danger" v-b-modal.task-modal-3 @click="erase"><pre>Delete      <br>   Assignment</pre> </b-button>
       <b-modal
         id="task-modal-3"
         ref="modal"

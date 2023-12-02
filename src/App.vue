@@ -2,8 +2,7 @@
   <div id="app">
     <!-- App header Component -->
     <!-- إضافة المكون *هيدر الموقع* للصفحة  -->
-    <app-header></app-header>
-    <br/>
+    <app-header class="sticky-top"></app-header>
     <!-- مكان عرض الصفحات الأساسية   -->
     <router-view />
   </div>
@@ -26,5 +25,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.sticky-top
+{
+  position:sticky;
+  top:20px;
+  left:20px;
 }
 </style>

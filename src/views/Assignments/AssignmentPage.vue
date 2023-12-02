@@ -1,32 +1,43 @@
 <template>
   <div>
-    <!-- Adding the adding items component to the page  -->
+    <b-container class="sticky-top-1">
+      <b-row class="row1">
+        <b-col cols="2" class="feature">
+               <!-- Adding the adding items component to the page  -->
     <!-- إضافة المكون * إضافة العناصر * إلى الصفحة  -->
     <assignment-adding-feature
-      :taskItems="taskItems"
-      :employeeItems="employeeItems"
-      @addingAssignment="addAssignment"
-    >
-    </assignment-adding-feature>
-    <br />
-
-    <!-- Adding the updating items component to the page  -->
+    :taskItems="taskItems"
+    :employeeItems="employeeItems"
+    @addingAssignment="addAssignment"
+  >
+  </assignment-adding-feature>
+        </b-col>
+        <b-col cols="2" class="feature">
+              <!-- Adding the updating items component to the page  -->
     <!-- إضافة المكون * تعديل العناصر * إلى الصفحة  -->
     <assignment-updating-feature
-      :taskItems="taskItems"
-      :employeeItems="employeeItems"
-      v-if="assignmentsExisted"
-      @updatingAssignment="updateAssignment"
-    >
-    </assignment-updating-feature>
-   <br/>
-   <assignment-deleting-feature
-   v-if="assignmentsExisted"
-   @deletingAssignment="deleteAssignment">
-   </assignment-deleting-feature>
+    :taskItems="taskItems"
+    :employeeItems="employeeItems"
+    v-if="assignmentsExisted"
+    @updatingAssignment="updateAssignment"
+  >
+  </assignment-updating-feature>
+        </b-col>
+        <b-col cols="2" class="feature">
+          <assignment-deleting-feature
+          v-if="assignmentsExisted"
+          @deletingAssignment="deleteAssignment">
+          </assignment-deleting-feature> 
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
     <!-- Adding the items list component to the page  -->
     <!-- إضافة المكون * جدول العناصر * إلى الصفحة  -->
-    <data-table :itemsList="assignmentItems"> </data-table>
+    <data-table :itemsList="assignmentItems" class="data-table"> </data-table>
+        </b-col>
+      </b-row>
+    </b-container>  
   </div>
 </template>
 <script lang="js">
@@ -114,3 +125,19 @@ export default {
     }
 }
 </script>
+<style>
+.row1
+{
+  margin-left: -45px;
+}
+.sticky-top-1
+{
+  position: sticky;
+  top: 100px;
+  height: 0px;
+}
+.feature{
+  width: 12%;
+  height: 80px;
+}
+</style>

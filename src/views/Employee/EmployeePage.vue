@@ -1,25 +1,37 @@
 <template>
   <div>
-      <!-- Adding the adding items component to the page  -->
+    <b-container class="sticky-top-1">
+      <b-row class="row1">
+        <b-col cols="2" class="feature">
+           <!-- Adding the adding items component to the page  -->
       <!-- إضافة المكون * إضافة العناصر * إلى الصفحة  -->
-    <employee-adding-feature
-      @addingEmployee="addEmployee"
-      >
-    </employee-adding-feature>
-    <br/>
-    <!-- Adding the updating items component to the page  -->
-    <!-- إضافة المكون * تعديل العناصر * إلى الصفحة  -->
-    <employee-updating-feature v-if="employeesExisted" @updatingEmployee="updateEmployee">
-    </employee-updating-feature>
-    <br/>
-     <!-- Adding the deleting items component to the page  -->
+          <employee-adding-feature
+          @addingEmployee="addEmployee"
+          >
+        </employee-adding-feature>  
+        </b-col>
+        <b-col cols="2" class="feature">
+          <!-- Adding the updating items component to the page  -->
+          <!-- إضافة المكون * تعديل العناصر * إلى الصفحة  -->
+          <employee-updating-feature v-if="employeesExisted" @updatingEmployee="updateEmployee">
+          </employee-updating-feature>
+        </b-col>
+        <b-col cols="2" class="feature">
+            <!-- Adding the deleting items component to the page  -->
     <!-- إضافة المكون *حذف العناصر * إلى الصفحة  -->
     <employee-deleting-feature v-if="employeesExisted" @deletingEmployee="deleteEmployee">
     </employee-deleting-feature>
 
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
      <!-- Adding the Items list component to the page  -->
       <!-- إضافة المكون * جدول العناصر * إلى الصفحة  -->
-    <data-table :itemsList="employeeItems"></data-table>
+      <data-table :itemsList="employeeItems" class="data-table"></data-table>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 <script lang="js">
@@ -122,3 +134,20 @@ export default {
     }
 }
 </script>
+<style>
+.row1
+{
+  margin-left: -45px;
+}
+.sticky-top-1
+{
+  position: sticky;
+  top: 100px;
+  height: 0px;
+}
+
+.feature{
+  width: 12%;
+  height: 80px;
+}
+</style>

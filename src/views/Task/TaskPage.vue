@@ -1,21 +1,33 @@
 <template>
   <div>
-      <!-- Adding the adding items component to the page  -->
+    <b-container class="sticky-top-1">
+      <b-row class="row1">
+        <b-col cols="2" clss="feature">
+              <!-- Adding the adding items component to the page  -->
       <!-- إضافة المكون * إضافة العناصر * إلى الصفحة  -->
       <task-adding-feature @addingTask="addTask">
-    </task-adding-feature>
-    <br />
-      <!-- Adding the updating items component to the page  -->
+      </task-adding-feature>
+        </b-col>
+        <b-col cols="2" class="feature">
+              <!-- Adding the updating items component to the page  -->
       <!-- إضافة المكون * تعديل العناصر * إلى الصفحة  -->
       <task-updating-feature v-if="tasksExisted" @updatingTask="updateTask"> </task-updating-feature>
-     <br/>
-      <!-- Adding the deleting items component to the page  -->
+        </b-col>
+        <b-col cols="2" class="feature">
+            <!-- Adding the deleting items component to the page  -->
       <!-- إضافة المكون * حذف العناصر * إلى الصفحة  -->
       <task-deleting-feature v-if="tasksExisted" @deletingTask="deleteTask"> </task-deleting-feature>
      
-      <!-- Adding the items list component to the page  -->
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <!-- Adding the items list component to the page  -->
       <!-- إضافة المكون * جدول العناصر * إلى الصفحة  -->
-    <data-table :itemsList="taskItems"></data-table>
+    <data-table :itemsList="taskItems" class="data-table"></data-table>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 <script lang="js">
@@ -112,3 +124,19 @@ export default {
     }
 }
 </script>
+<style>
+.row1
+{
+  margin-left: -45px;
+}
+.sticky-top-1
+{
+  position: sticky;
+  top: 100px;
+  height: 0px;
+}
+.feature{
+  width: 12%;
+  height: 80px;
+}
+</style>

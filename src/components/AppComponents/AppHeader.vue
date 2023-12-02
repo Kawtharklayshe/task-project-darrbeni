@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div >
       <b-navbar toggleable="lg" type="dark" variant="secondary">
-        <router-link to="/home" id="brand" exact>
+        <router-link to="/" id="brand" exact>
 
           <b-badge pill variant="danger">
             <span class="firstChar">E</span>mployee 
@@ -18,7 +18,7 @@
           <b-navbar-nav>
                 <b-nav tabs >
                   <b-nav-item >
-                    <router-link class="router" to="/home" tag="li" > Home</router-link>
+                    <router-link class="router" to="/" tag="li" > Home</router-link>
                   </b-nav-item>
                   <b-nav-item>
                     <router-link class="router" to="/employees" tag="li">Employees</router-link>

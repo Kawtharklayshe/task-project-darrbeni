@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <b-button variant="info" v-b-modal.task-modal @click="erase">Add Task</b-button>
+    <b-button variant="secondary" v-b-modal.task-modal @click="erase"><pre>Add     <br>   Task</pre> </b-button>
     <b-modal
       id="task-modal"
       ref="modal"
