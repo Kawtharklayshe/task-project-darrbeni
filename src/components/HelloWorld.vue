@@ -1,9 +1,15 @@
 <template>
   <div class="hello">
-    <h1>Hello from {{ msg }}</h1>
-    <ul>
-      <li v-for="(nam,id) in names" :key="id">{{ nam }}</li>
-    </ul>
+    <!-- <div>hi i am first div</div>
+    <slot name="header">1</slot>
+    <div>hi i am second div</div>
+    <slot>2</slot>
+    <div>hi i am third div</div>
+    <slot name="footer">3</slot> -->
+
+    <slot :user="user">
+      {{ user.lastname }}
+    </slot>
   </div>
 </template>
 
@@ -13,6 +19,14 @@ export default {
   props: {
     msg: String,
     names: Array
+  },
+  data() {
+    return {
+      user: {
+        firstName: 'hani',
+        lastname: 'salloum'
+      },
+    }
   }
 }
 </script>

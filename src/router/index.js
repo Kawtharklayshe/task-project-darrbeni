@@ -4,8 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import Hani from '@/views/Hani.vue'
 import ToDo from '@/views/tasks/TaskList.vue'
 import EditTask from '@/views/tasks/EditTask.vue'
-import AddEmployee from '@/views/employees/addEmployee.vue'
-import EmployeesList from '@/views/employees/employeesList.vue'
+import AddEmployee from '@/views/employees/addEmployee.vue' 
 import EditEmployee from '@/views/employees/editEmployee.vue'
 import AssignTask from '@/views/assignTask/assignTask.vue'
 import AssignTaskTable from '@/views/assignTask/assignTaskTable.vue'
@@ -59,14 +58,6 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: AddEmployee
-  },
-  {
-    path: '/Employees-List',
-    name: 'Employees-List',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: EmployeesList
   },
   {
     path: '/Edit-Employee/:id',

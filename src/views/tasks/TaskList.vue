@@ -1,5 +1,20 @@
 <template>
     <div class="container">
+        <!-- <HelloWorld>
+                <template v-slot:header>i am header</template>
+                <template v-slot:default>i am middle</template>
+                <template v-slot:footer>i am footer</template>
+        </HelloWorld> -->
+        <!-- <HelloWorld>
+            <template v-slot:default="slotProps">
+                {{ slotProps.user.firstName }}
+            </template>
+        </HelloWorld> -->
+        <!-- <button @click="increaseOne()">increase</button>
+        <div>{{ mixinNum }}</div>
+        <div>{{ mixinData }}</div>
+        <div>{{ mixinNumSquared }}</div> -->
+        
         <div class="header d-flex justify-content-between align-items-center mb-5">
             <h1 class="logo fst-italic text-primary">Task List</h1>
             <button class="btn btn-primary" @click="returnToEmp">Return To Employees Page</button>
@@ -65,23 +80,25 @@ import {
     BTable
 } from "bootstrap-vue"
 import HelloWorld from "@/components/HelloWorld.vue"
+import myMixin from '@/mixins/myMixin.js'
+import { mapGetters } from "vuex";
 
 
 export default {
     components: {
-        BModal,
-        BForm,
-        BFormGroup,
-        BFormCheckbox,
-        BFormInput,
-        BButton,
-        BFormTextarea,
-        BFormDatepicker,
-        BFormSelect,
-        BFormSelectOption,
-        BTable,
-        HelloWorld,
+    BModal,
+    BForm,
+    BFormGroup,
+    BFormCheckbox,
+    BFormInput,
+    BButton,
+    BFormTextarea,
+    BFormDatepicker,
+    BFormSelect,
+    BFormSelectOption,
+    BTable,
     },
+    mixins: [myMixin],
     data() {
         return {
             name: '',
@@ -93,12 +110,15 @@ export default {
             status: 'new',
             isCompleted: "Not Completed",
             fields: ['title', 'description', 'date', 'isCompleted', 'status'],
-            tasks: []
+            // tasks: []
         }
     },
-    mounted() {
-        this.tasks = JSON.parse(window.localStorage.getItem("vueTasks")) || [];
+    computed: {
+        ...mapGetters(['tasks']),
     },
+    // mounted() {
+    //     this.tasks = JSON.parse(window.localStorage.getItem("vueTasks")) || [];
+    // },
     methods: {
         checkFormValidity() {
             const valid = this.$refs.yu.checkValidity()
@@ -138,7 +158,10 @@ export default {
                 status: this.status
             })
             // add the array of tasks to local storage
-            window.localStorage.setItem("vueTasks", JSON.stringify(this.tasks));
+            this.$store.dispatch("saveTasks", {
+                tasks: this.tasks
+            });
+
             // Hide the modal manually
             this.$nextTick(() => {
                 this.$bvModal.hide('modal-prevent-closing')

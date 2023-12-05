@@ -14,6 +14,7 @@ import {
     BTable
 } from "bootstrap-vue"
 import AssignTask from "./assignTask.vue";
+import { mapGetters } from "vuex";
 
 export default {
     components: {
@@ -22,17 +23,19 @@ export default {
     },
     data() {
         return {
-            taskEmployee: [],
             tableFields: ["fullName", "task"]
         }
     },
-    mounted() {
-        showData();
+    computed: {
+        ...mapGetters(['taskEmployee']),
     },
     methods: {
         showTable() {
-            this.taskEmployee = JSON.parse(window.localStorage.getItem("taskEmployee"));
+            this.taskEmployee = this.taskEmployee;
         }
-    }
+    },
+    // mounted() {
+    //     this.taskEmployee = JSON.parse(window.localStorage.getItem("taskEmployee"))
+    // },
 }
 </script>

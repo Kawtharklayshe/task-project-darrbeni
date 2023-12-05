@@ -37,7 +37,7 @@ import {
     BTable,
 
 } from 'bootstrap-vue'
-
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -60,29 +60,28 @@ export default {
             },
         }
     },
+    computed: {
+        ...mapGetters(['tasks']),
+    },
     mounted() {
         let id = this.$route.params.id;
-        let number = this.$route.params.number;
-        let tasks = JSON.parse(localStorage.getItem("vueTasks"));
-        let arr=tasks[number] || [];
-        this.editedTask = arr.find(el => el.id == id);
+        this.editedTask = this.tasks.find(el => el.id == id);
     },
     methods: {
         saveTask() {
             // You can handle the task update logic here, for example, by emitting an event or making an API request.
             // Don't forget to pass the task ID (this.editedTask.id) to identify the task to be edited.
             let id = this.$route.params.id;
-            let number = this.$route.params.number;
-            let tasks = JSON.parse(localStorage.getItem("vueTasks"));
-            let arr=tasks[number] || [];
             
-            for (let i=0 ; i< arr.length ; i++) {
-                if(arr[i].id == id) {
-                    arr[i] = this.editedTask;
+            for (let i=0 ; i< this.tasks.length ; i++) {
+                if(this.tasks[i].id == id) {
+                    this.tasks[i] = this.editedTask;
                 }
             }
-            tasks[number] = arr;
-            window.localStorage.setItem("vueTasks", JSON.stringify(tasks));
+            
+            this.$store.dispatch("saveTasks", {
+                tasks: this.tasks
+            });
             
             // After updating, you can navigate back to the task list or another page.
             this.$router.push("/ToDo");

@@ -52,6 +52,8 @@ import {
     BDropdownItem
 } from "bootstrap-vue"
 
+import { mapGetters } from "vuex";
+
 export default {
     components: {
         BModal,
@@ -74,16 +76,18 @@ export default {
             task: [],
             startDate: '',
             endDate: '',
-            employees: [],
-            tasks: [],
             taskEmployee: [],
         }
     },
-    mounted() {
-        this.employees = JSON.parse(window.localStorage.getItem("Employees")) || [];
-        this.tasks = JSON.parse(window.localStorage.getItem("vueTasks")) || [];
-        this.taskEmployee = JSON.parse(window.localStorage.getItem("taskEmployee")) || [];
+    computed: {
+        ...mapGetters([ 'employees', 'tasks']),
     },
+    // mounted() {
+    //     this.employees = JSON.parse(window.localStorage.getItem("Employees")) || [];
+    //     this.tasks = JSON.parse(window.localStorage.getItem("vueTasks")) || [];
+    //     // this.taskEmployee = JSON.parse(window.localStorage.getItem("taskEmployee")) || [];
+
+    // },
     methods: {
         checkFormValidity() {
             const valid = this.$refs.employeeForm.checkValidity();
@@ -116,7 +120,9 @@ export default {
             });
 
             // add the array of tasks to local storage
-            window.localStorage.setItem("taskEmployee", JSON.stringify(this.taskEmployee));
+            this.$store.dispatch("saveTaskEmployees", {
+                taskEmployee: this.taskEmployee
+            });
 
             this.$emit('save-table');
 

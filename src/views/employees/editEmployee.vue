@@ -37,7 +37,7 @@ import {
     BTable,
 
 } from 'bootstrap-vue'
-
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -59,22 +59,26 @@ export default {
             },
         }
     },
+    computed: {
+        ...mapGetters(['employees']),
+    },
     mounted() {
         let id = this.$route.params.id;
-        let emps = JSON.parse(localStorage.getItem("Employees"));
-        this.editedEmployee = emps.find(el => el.id == id);
+        this.editedEmployee = this.employees.find(el => el.id == id);
     },
     methods: {
         saveEmployee() {
             let id = this.$route.params.id;
-            let emps = JSON.parse(localStorage.getItem("Employees"));
             
-            for (let i=0 ; i< emps.length ; i++) {
-                if(emps[i].id == id) {
-                    emps[i] = this.editedEmployee;
+            for (let i=0 ; i< this.employees.length ; i++) {
+                if(this.employees[i].id == id) {
+                    this.employees[i] = this.editedEmployee;
                 }
             }
-            window.localStorage.setItem("Employees", JSON.stringify(emps));
+
+            this.$store.dispatch("saveEmployees", {
+                employees: this.employees
+            });
             
             // After updating, you can navigate back to the task list or another page.
             this.$router.push("/Employees-List");

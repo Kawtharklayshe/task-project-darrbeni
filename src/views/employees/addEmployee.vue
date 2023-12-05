@@ -1,9 +1,21 @@
 <template>
     <div class="container">
 
+        <!-- <div class="d-flex justify-content-center align-items-stretch gap-3">
+            <Counter />
+            <Like />
+        </div> -->
+
+        
+        <!-- <button @click="increaseOne">increase</button>
+        <div>{{ mixinNum }}</div>
+        <div>{{ mixinData }}</div>
+        <div>{{ mixinNumSquared }}</div> -->
+
+
         <div class="header d-flex justify-content-between align-items-center">
             <h1 class="logo fst-italic text-primary">Add Employee Page</h1>
-            <button @click="goToEmployeesList" class="btn btn-primary">Show All Employees</button>
+            <!-- <button @click="goToEmployeesList" class="btn btn-primary">Show All Employees</button> -->
             <b-button v-b-modal.modal-prevent-closing variant="primary">Add Employee</b-button>
         </div>
 
@@ -34,9 +46,9 @@
             </form>
         </b-modal>
 
-        <!-- <div class="mt-5 row">
-            <Card class="col col-12 col-md-6 col-lg-4" v-for="emp in employees" :id="emp.id" :firstName="emp.firstName" :lastName="emp.lastName" />
-        </div> -->
+        <div class="mt-5 row">
+            <Card class="col col-12 col-md-6 col-lg-4" v-for="emp in employees" :id="emp.id" :firstName="emp.firstName" :lastName="emp.lastName" :email="emp.email" :password="emp.password"/>
+        </div>
     </div>
 </template>
 
@@ -45,7 +57,7 @@
     margin-bottom: 40px;
 }
 </style>
-  
+
 <script>
 import {
     BModal,
@@ -60,6 +72,11 @@ import {
     BFormSelectOption,
     BTable
 } from "bootstrap-vue"
+import Card from "@/components/Card.vue";
+import myMixin from "@/mixins/myMixin.js";
+import Counter from "@/components/counter.vue";
+import Like from "@/components/like.vue";
+import { mapGetters } from "vuex";
 
 export default {
     components: {
@@ -74,7 +91,11 @@ export default {
     BFormSelect,
     BFormSelectOption,
     BTable,
+    Counter,
+    Like,
+    Card
 },
+    mixins: [myMixin],
     data() {
         return {
             fname: '',
@@ -85,12 +106,18 @@ export default {
             emailState: null,
             pass: '',
             passState: null,
-            employees: [],
+            // employees: [],
         }
     },
-    mounted() {
-        this.employees = JSON.parse(window.localStorage.getItem("Employees")) || [];
+    computed: {
+        ...mapGetters(['employees']),
+        count: function() {
+            return this.$store.state.counter;
+        }
     },
+    // mounted() {
+    //     this.employees = JSON.parse(window.localStorage.getItem("Employees")) || [];
+    // },
     methods: {
         checkFormValidity() {
             const valid = this.$refs.employeeForm.checkValidity()
@@ -131,7 +158,9 @@ export default {
             });
 
             // add the array of tasks to local storage
-            window.localStorage.setItem("Employees", JSON.stringify(this.employees));
+            this.$store.dispatch("saveEmployees", {
+                employees: this.employees
+            });
 
 
             // Hide the modal manually
@@ -139,9 +168,9 @@ export default {
                 this.$bvModal.hide('modal-prevent-closing')
             })
         },
-        goToEmployeesList() {
-            this.$router.push(`/Employees-List`);
-        }
+        // goToEmployeesList() {
+        //     this.$router.push(`/Employees-List`);
+        // }
 
     }
 }
