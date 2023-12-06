@@ -6,7 +6,7 @@ import {
   BModal,
   BTable,
 } from 'bootstrap-vue'
-
+import {mapGetters} from "vuex"
 export default {
   components: {
     BTable,
@@ -35,6 +35,9 @@ export default {
 
       // After updating, you can navigate back to the task list or another page.
     },
+  },
+  computed:{
+    ...mapGetters(['tasks'])
   },
   mounted(){
     let id=this.$route.params.id;

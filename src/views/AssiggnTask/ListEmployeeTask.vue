@@ -46,12 +46,12 @@ export default {
     //     this.employeetasklist = JSON.parse(savedTaskEmployee);
     //   }
     // },
-    getFromLocalStorage(employeeTaskList) {
-      const savedTaskEmployee = localStorage.getItem("employeetasklist");
-      if (savedTaskEmployee) {
-        this.employeetasklist = JSON.parse(savedTaskEmployee);
-      }
-    },
+    // getFromLocalStorage(employeeTaskList) {
+    //   const savedTaskEmployee = localStorage.getItem("employeetasklist");
+    //   if (savedTaskEmployee) {
+    //     this.employeetasklist = JSON.parse(savedTaskEmployee);
+    //   }
+    // },
   },
 };
 </script>

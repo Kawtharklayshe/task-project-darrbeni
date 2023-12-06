@@ -42,7 +42,7 @@ export default {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
-  background-color: #eaf2f8;
+  background-color: #c1b4c08c;
   color: #333;
 }
 
@@ -53,7 +53,7 @@ export default {
 
 .edit-icon {
   cursor: pointer;
-  background-color: #007bff;
+  background-color: rgba(215, 181, 206, 0.801);;
   color: #fff;
   border-radius: 50%;
   width: 30px;

@@ -1,7 +1,21 @@
 <template>
     <div>
-      <HelloWorld :arr="tasklist"/>
-      <b-button v-b-modal.modal-prevent-closing>Add Task</b-button>
+      <!-- <HelloWorld :arr="tasklist">
+        <template v-slot:slot1>
+             <h6>tast for slot 1</h6>
+         </template>
+          <template v-slot:default>
+             <h6>tast for slot without name</h6>
+         </template> -->
+         <!-- <template v-slot:slot2>
+              <h6>tast for slot 2</h6>
+         </template> -->
+           <!-- <template v-slot:default="slotProps">
+               {{ slotProps.user.firstName }}
+           </template> -->
+      <!-- </HelloWorld> --> 
+      <!-- <div> <button @click="increment">Mixins: {{ count }}</button></div> -->
+      <b-button v-b-modal.modal-prevent-closing class="AddTask">Add Task</b-button>
   <!-- <div class="container">
     <table>
       <tr>
@@ -34,7 +48,7 @@
         @hidden="resetModal"
         @ok="savetask"
       >
-      {{ form }}
+    
 <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group
           label="Name"
@@ -108,8 +122,10 @@ import {
 } from 'bootstrap-vue'
 
 import HelloWorld from '@/components/HelloWorld.vue'
-
-    export default {
+import mymixin from "@/mixin/mixin.js"
+import {mapGetters} from "vuex"
+export default {
+       mixins: [mymixin],
       data() {
         return {
           name: '',
@@ -195,9 +211,19 @@ import HelloWorld from '@/components/HelloWorld.vue'
   created(){
     console.log('created');
   },
-  mounted(){
+  computed: {
+        ...mapGetters(['tasks']),
+    },
+  // mounted(){
    
-  this.tasklist=JSON.parse(localStorage.getItem('tasks')) || [];
-    }
+  // this.tasklist=JSON.parse(localStorage.getItem('tasks')) || [];
+  //   }
     }
   </script>
+
+  <style scoped>
+  .AddTask{
+    border: 1px solid;
+    background-color:  rgba(235, 112, 200, 0.801);;
+  }
+  </style>

@@ -1,8 +1,18 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <!-- <h1>{{ msg }}</h1>
     <div v-for="item in arr">
-    this is my item{{item }}</div>
+    this is my item{{item }}</div> -->
+
+
+
+ <slot name="slot1"></slot>
+  <!-- <slot ></slot> -->
+   <slot name="slot2"></slot>
+ <slot v-bind:user="user" >
+   {{ user.firstName }}
+  </slot>
+
     <!-- <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -33,8 +43,19 @@
 </template>
 
 <script>
+import mymixin from "@/mixin/mixin.js"
 export default {
   name: 'HelloWorld',
+    mixins: [mymixin],
+  data(){
+ return{
+  user:{
+    firstName:"sendos",
+    lastName:"masour"
+
+  },
+ }
+  },
   props: {
     msg: String,
     arr: Array,

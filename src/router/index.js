@@ -84,6 +84,46 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/AssiggnTask/AssignTaskToEmployee.vue'),
   },
+  {
+    path: '/mixin',
+    name: 'mixin',
+
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ 'C:/Users/HP/Desktop/task project/task project/taskproject/src/mixin/mixin.js'),
+  },
+  {
+    path: '/counter',
+    name: 'counter',
+
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../components/counter.vue'),
+  },
+  {
+    path: '/like',
+    name: 'like',
+
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../components/like.vue'),
+  },
+  {
+    path: '/Headers',
+    name: 'Headers',
+
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../components/Headers.vue'),
+  },
 ]
 
 const router = new VueRouter({

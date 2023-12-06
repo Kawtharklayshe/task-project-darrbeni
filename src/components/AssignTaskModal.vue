@@ -59,6 +59,7 @@ export default {
       taskList: [],
     };
   },
+ 
   mounted() {
     this.retrieveFromLocalStorage();
   },

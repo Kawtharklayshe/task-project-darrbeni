@@ -45,7 +45,8 @@ export default {
 }
 
 .table th {
-  background-color: #82bbf8;
+  font-family: cursive;
+  background-color:  rgba(235, 112, 200, 0.432);;
   color: #fff;
 }
 

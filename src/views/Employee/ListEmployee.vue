@@ -50,65 +50,60 @@
     </template>
 
 <script>
-  
 import {
-  
-  BFormInput,
-  BModal,
-  BButton,
-  BInputGroup,
-
-
+    BButton,
+    BFormGroup,
+    BFormInput,
+    BModal,
+    BTable,
 } from 'bootstrap-vue'
+import { mapGetters } from 'vuex';
 
 export default {
-    data() {
-    return {
-      showPassword: false,
-      password: null,
-      emlist:[],
-      form:{
-          firstname:'',
-          lastname:'',
-          email:'',
-          password:'',
-          
-        },
-    };
-
-  },
-  computed: {
-    buttonLabel() {
-      return (this.showPassword) ? "Hide" : "Show";
-    }
-  },
-
-
-    methods:{
-    toggleShow() {
-        this.showPassword = !this.showPassword;
+    components: {
+        BTable,
+        BFormGroup,
+        BModal,
+        BFormInput,
+        BButton,
+        
     },
-    saveemployee(){
-    this.emlist.push({
-        id:this.emlist.length+1,
-        firstname:this.form.firstname,
-        lastname:this.form.lastname,
-        email:this.form.email,
-        password:this.form.password,
-        });
-    
+    data() {
+        return {
+            editedEmployee: {
+                id: null, // Task ID
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            },
+        }
+    },
+    computed: {
+        ...mapGetters(['employees']),
+    },
+    mounted() {
+        let id = this.$route.params.id;
+        this.editedEmployee = this.employees.find(el => el.id == id);
+    },
+    methods: {
+        saveEmployee() {
+            let id = this.$route.params.id;
+            
+            for (let i=0 ; i< this.employees.length ; i++) {
+                if(this.employees[i].id == id) {
+                    this.employees[i] = this.editedEmployee;
+                }
+            }
 
-    window.localStorage.setItem('list',JSON.stringify(this.emlist)) ;
-       // console.log(this.form)
-       // this.form.name=''
-       // this.form.description=''
-       // this.form.startdate=''
-       // this.form.status=''
-     console.log(this.emlist)
-      
-
-     },
-  }
-};
+            this.$store.dispatch("saveEmployees", {
+                employees: this.employees
+            });
+            
+            // After updating, you can navigate back to the task list or another page.
+            this.$router.push("/Employees-List");
+        },
+    },
+}
 </script>
 

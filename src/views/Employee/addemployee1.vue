@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="header d-flex justify-content-between align-items-center">
-      <h1 class="logo fst-italic text-primary">Employees List</h1>
-      <b-button variant="primary" @click="showModal = true">Add Employee</b-button>
+    <div class="header  align-items-center">
+      
+      <b-button class="buttonAdd" @click="showModal = true" >Add Employee</b-button>
     </div>
 
     <b-modal
@@ -42,7 +42,7 @@
 <script>
 import { BModal, BButton, BFormInvalidFeedback, BFormGroup, BFormInput } from "bootstrap-vue";
 import employeelist1 from "@/components/employeelist1.vue";
-
+import { mapGetters } from "vuex";
 export default {
   components: {
     BModal,
@@ -79,9 +79,12 @@ export default {
       deep: true,
     },
   },
-  mounted() {
-    this.retrieveEmployeesFromLocalStorage();
+  computed:{
+    ...mapGetters(['employees'])
   },
+  // mounted() {
+  //   this.retrieveEmployeesFromLocalStorage();
+  // },
   methods: {
     getInputState(fieldName) {
       return this.formStates[fieldName];
@@ -174,9 +177,12 @@ export default {
 .header {
   margin-bottom: 20px;
 }
-
+.buttonAdd{
+  background-color: rgba(235, 112, 200, 0.801);
+}
 .logo {
   margin: 0;
+  color: rgba(235, 112, 200, 0.801);
 }
 
 .employee-cards {
