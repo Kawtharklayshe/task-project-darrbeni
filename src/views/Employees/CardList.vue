@@ -1,12 +1,13 @@
 <script>
-import 
-  Card from '@/views/Employees/Card.vue'
-  
+import  Card from '@/views/Employees/Card.vue'
+
+import { location } from '@/mixins/mixin';
   export default {
   components: {
     Card,
 
   },
+  mixins:[location],
   methods:{
 print(){
   console.log('hi im from child ${data}')
@@ -16,10 +17,14 @@ print(){
     employees: Array,
   }
   }
+
 </script>
 
 <template>
 <div class="container py-5">
+  <div>
+    {{ name }} this name from mixin 
+  </div>
   <div class="row">
 <div class= "col-3  m-1 card-div" v-for="emp in employees">
 <Card :employee="emp" @getData="print"></Card>

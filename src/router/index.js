@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import editTask from '../views/Tasks/editTask.vue'
-
+import testX from '../views/VuexTests/test1.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,6 +10,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/test1',
+    name: 'test1',
+    component: testX
   },
   {
     path: '/about',

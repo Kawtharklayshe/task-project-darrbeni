@@ -5,8 +5,12 @@
   {{ name }}
   </div>
   <div>
-    this is info the Task
+    hi from HelloWorld Componant
   </div>
+  <slot></slot>
+  <header>
+    <slot name="header"></slot>
+  </header>
   </div>
 </template>
 
