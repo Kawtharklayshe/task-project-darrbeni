@@ -3,9 +3,8 @@
     <b-container>
     <b-row>
       <b-col>
-        <h4>
-          This is the complete history of your changes on the system
-        </h4>
+        <br/>
+        <h3>History</h3>
       </b-col>
     </b-row>
     <b-row>
@@ -25,12 +24,14 @@
   </div>
 </template>
 <script>
-import Mixin from '@/mixins/mixin'
+import { mapGetters } from 'vuex';
 export default{
-    mixins:[Mixin],
     components:{},
         data:
     {
+    },
+    computed:{
+      ...mapGetters(['historyItems'])
     }
 }
 

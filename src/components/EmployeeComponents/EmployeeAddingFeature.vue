@@ -115,10 +115,7 @@ export default {
     };
   },
   methods: {
-    // editTask: function (task) {
-    //   console.log("afldf");
-    //   this.$router.push({ name: "editTask", params: { id: task.id } });
-    // },
+
     erase: function () {
       (this.form.fname = ""),
         (this.form.lname = ""),
@@ -130,8 +127,7 @@ export default {
 
     },
     saveEmployee: function () {
-      this.$emit("addingEmployee",
-
+       this.$emit("addingEmployee",
        {
         fname:this.form.fname,
         lname:this.form.lname,
@@ -139,7 +135,9 @@ export default {
         ex:this.form.ex,
         startDate:this.form.startDate,
         endDate:this.form.endDate,
-        email:this.form.email});
+        email:this.form.email,
+        edit:""
+      });
     },
     handleOk(bvModalEvent) {
       // Prevent modal from closing

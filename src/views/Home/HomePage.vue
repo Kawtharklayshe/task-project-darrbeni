@@ -9,9 +9,9 @@
         <b-col>Assignments Number</b-col>
       </b-row>
       <b-row>
-        <b-col>{{ employeeNumber }}</b-col>
-        <b-col>{{ taskNumber }}</b-col>
-        <b-col>{{ assignmentNumber }}</b-col>
+        <b-col>{{ employeeItems.length }}</b-col>
+        <b-col>{{ taskItems.length }}</b-col>
+        <b-col>{{ assignmentItems.length }}</b-col>
       </b-row>
     </b-container>
     <br>
@@ -21,16 +21,16 @@
   <script lang="js">
   import {BImg,BContainer,BCol,BRow }from  'bootstrap-vue';
   import {AppList} from '@/components/GeneralComponents/DataTable.vue';
+  import { mapGetters } from 'vuex';
   export default {
   components:{AppList,BImg,BContainer,BCol,BRow},
     data(){
-      return {
-        employeeNumber:(JSON.parse(localStorage.getItem('employeeItems'))||[]).length,
-        taskNumber:(JSON.parse(localStorage.getItem('taskItems'))||[]).length,
-        assignmentNumber:(JSON.parse(localStorage.getItem('assignmentItems'))||[]).length
+      return {}
+    },
+    computed:{
+      ...mapGetters(['assignmentItems','taskItems','employeeItems'])
     }
   }
-}
 </script>
 <style>
 .firstChar1

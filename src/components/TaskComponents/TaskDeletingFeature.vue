@@ -1,6 +1,6 @@
 <template>
     <div>
-      <b-button variant="danger" v-b-modal.task-modal-3 @click="erase"> <pre>Delete      <br>   Task</pre></b-button>
+      <b-button variant="danger" v-b-modal.task-modal-3 @click="erase"><pre> Delete      <br/>    Task</pre></b-button>
       <b-modal
         id="task-modal-3"
         ref="modal"
@@ -9,9 +9,9 @@
       >
         <form ref="form" @submit.stop.prevent="handleSubmit">
             <b-form-group
-            label="Id :"
+            label="id :"
             label-for="id-input"
-            invalid-feedback="Id is required"
+            invalid-feedback="id is required"
           >
             <b-form-input
               id="id-input"

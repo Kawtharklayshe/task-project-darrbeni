@@ -9,9 +9,9 @@
         @ok="saveEmployee"
       >
       <b-form-group
-      label="Id :"
+      label="id :"
       label-for="id-input"
-      invalid-feedback="Id is required"
+      invalid-feedback="id is required"
     >
       <b-form-input
         id="id-input"
@@ -49,7 +49,7 @@
           >
             <b-form-input
               id="lname-input"
-              v-model="form.lname"
+              v-model="form.age"
               required
             ></b-form-input>
           </b-form-group>

@@ -1,7 +1,6 @@
 <template>
     <div>
-      <b-button v-b-modal.task-modal-2 @click="erase" variant="info">
-        <pre>Update      <br>   Task</pre>
+      <b-button v-b-modal.task-modal-2 @click="erase" variant="info"><pre>Update        <br>    Task</pre>
       </b-button>
       <b-modal
         id="task-modal-2"
@@ -13,9 +12,9 @@
       >
         <form ref="form" @submit.stop.prevent="handleSubmit">
             <b-form-group
-            label="Id :"
+            label="id :"
             label-for="id-input"
-            invalid-feedback="Id Name is required"
+            invalid-feedback="id Name is required"
           >
             <b-form-input
               id="id-input"
@@ -115,7 +114,7 @@
       return {
         //single item stored temporiraly in the page till being sent
         form: {
-          id:null,
+          id:"",
           name: "",
           description:"",
           duration:"",

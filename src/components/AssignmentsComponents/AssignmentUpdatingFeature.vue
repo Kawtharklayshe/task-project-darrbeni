@@ -9,9 +9,9 @@
       >
         <form ref="form" @submit.stop.prevent="handleSubmit">
             <b-form-group
-      label="Id :"
+      label="id :"
       label-for="id-input"
-      invalid-feedback="Id is required"
+      invalid-feedback="id is required"
     >
       <b-form-input
         id="id-input"
@@ -95,7 +95,6 @@
         (this.form.responsible="")
         (this.form.employees="")
         (this.form.tasks="")
-
       },
       saveAssignment: function () {
         this.$emit("updatingAssignment", {

@@ -1,8 +1,9 @@
 <template>
   <div>
     <b-container class="sticky-top-1">
-      <b-row class="row1">
-        <b-col cols="2" clss="feature">
+      <br/>
+      <b-row>
+        <b-col cols="2" class="feature">
               <!-- Adding the adding items component to the page  -->
       <!-- إضافة المكون * إضافة العناصر * إلى الصفحة  -->
       <task-adding-feature @addingTask="addTask">
@@ -35,100 +36,36 @@
 import TaskAddingFeature from '@/components/TaskComponents/TaskAddingFeature.vue';
 import TaskUpdatingFeature from '@/components/TaskComponents/TaskUpdatingFeature.vue';
 import TaskDeletingFeature from '@/components/TaskComponents/TaskDeletingFeature.vue';
-//Mixins
-import Mixin from '@/mixins/mixin'
+//Store
+import { mapGetters} from 'vuex';
 export default {
-  mixins:[Mixin],
     components:{
       TaskAddingFeature,
       TaskUpdatingFeature,
       TaskDeletingFeature
     },
     data(){return { 
-      taskItems:JSON.parse(localStorage.getItem('taskItems'))||[]
+
      }},
-    watch:{
-       taskItems(){
-         localStorage.setItem('taskItems',JSON.stringify(this.taskItems))
-     }
-    },
     computed:{
-      tasksExisted()
-      {
-        if((JSON.parse(localStorage.getItem('taskItems'))||[]).length==0) return false;
-      else return true;
-      },
-      taskItems(){
-        return JSON.parse(localStorage.getItem('taskItems'))||[]
-      }
+      ...mapGetters(['taskItems','tasksExisted']),
     },
     methods:{
-      reloadPage()
-      {
-        window.location.reload()
-      },
       addTask($event)
       {
-        this.taskItems.push({ id: this.taskItems.length + 1, ...$event });
-        if(this.taskItems.length==1)
-            this.reloadPage();
-          //updating history
-        this.historyItems.push({id:this.historyItems.length+1,
-          details:`You added the Task :${{...$event}.name}`})
+        this.$store.dispatch('addTask',{...$event})
       },
        updateTask($event){
-          if((({...$event}.id-1)<this.taskItems.length)&&(({...$event}.id-1)>=0 ))
-          {
-            if ({...$event}.name!="")
-              this.taskItems[{...$event}.id-1].name={...$event}.name;
-            if ({...$event}.description!="")
-              this.taskItems[{...$event}.id-1].description={...$event}.description;
-            if ({...$event}.duration!="")
-              this.taskItems[{...$event}.id-1].duration={...$event}.duration;
-            if ({...$event}.difficulty!="")
-              this.taskItems[{...$event}.id-1].difficulty={...$event}.difficulty;
-            if ({...$event}.startDate!="")
-             this.taskItems[{...$event}.id-1].startDate={...$event}.startDate;
-            if ({...$event}.endDate!="")
-             this.taskItems[{...$event}.id-1].endDate={ ...$event }.endDate;
-             //updating history 
-             this.historyItems.push({id:this.historyItems.length+1,
-            details:`You have updated the Task :${{...$event}.name}`}) 
-            localStorage.setItem('taskItems',JSON.stringify(this.taskItems));
-          
-          }
-          else
-          {
-            alert("you entered a bad id")
-          }
+        this.$store.dispatch('updateTask',{...$event})
       },
       deleteTask($event)
       {
-        console.log({...$event}.id);
-        if((({...$event}.id)<this.taskItems.length)&&(({...$event}.id)>=0 ))
-          {
-              //updating history
-          this.historyItems.push({id:this.historyItems.length+1,
-          details:`You have deleted the Task :${this.taskItems[{...$event}.id].name} `}) 
-            this.taskItems=this.taskItems.slice(0,{...$event}.id).concat(this.taskItems.slice({...$event}.id+1,this.taskItems.length));
-            this.taskItems.filter((el) => el.id>{...$event}.id).map((el) => el.id--);
-            localStorage.setItem('taskItems',JSON.stringify(this.taskItems));
-            if({...$event}.id==0)
-            this.reloadPage();
-          }
-        else
-          {
-            alert("you entered a bad id")
-          }
+         this.$store.dispatch('deleteTask',$event)
       }
     }
 }
 </script>
 <style>
-.row1
-{
-  margin-left: -45px;
-}
 .sticky-top-1
 {
   position: sticky;

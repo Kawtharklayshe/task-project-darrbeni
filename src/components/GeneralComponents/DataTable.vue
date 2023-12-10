@@ -1,21 +1,26 @@
 <template>
     <div>
-      <b-table striped hover :items="itemsList"  bordered sticky-header="true" fixed  class="data-table"></b-table>
+      <p id="edit">
+      </p>
+       <b-table striped hover :items="itemsList"  bordered sticky-header="true" fixed  class="data-table"></b-table>
     </div>
   </template>
   <script lang="js">
   import 
   {
       BTable
-  }from "bootstrap-vue";
-  
+  }from "bootstrap-vue";  
   export default {
      components:{BTable},
      props:['itemsList'],
-     data() {return{
-        }
-     }
+     data() {
+      return{
+        
+    }
+  }
 }
+
+
   </script>
 <style>
 .data-table{
